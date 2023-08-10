@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaAlimentacao.Models;
 
-namespace SistemaAlimentacao.Data
+namespace SistemaAlimentacao.Data.Map
 {
     public class UsuarioMap : IEntityTypeConfiguration<UsuarioModel>
     {

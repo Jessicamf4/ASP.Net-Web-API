@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using SistemaAlimentacao.Data.Map;
 using SistemaAlimentacao.Models;
 
 namespace SistemaAlimentacao.Data
@@ -14,6 +15,8 @@ namespace SistemaAlimentacao.Data
     
         protected override void OnModelCreating(ModelBuilder modelBulder)
         {
+            modelBulder.ApplyConfiguration(new UsuarioMap());
+            modelBulder.ApplyConfiguration(new RefeicaoMap());
             base.OnModelCreating(modelBulder);
         }
     }

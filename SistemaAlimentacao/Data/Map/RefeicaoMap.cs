@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SistemaAlimentacao.Models;
 
-namespace SistemaAlimentacao.Data
+namespace SistemaAlimentacao.Data.Map
 {
     public class RefeicaoMap : IEntityTypeConfiguration<RefeicaoModel>
     {
@@ -11,7 +11,7 @@ namespace SistemaAlimentacao.Data
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(150);
             builder.Property(x => x.TipoRefeicao).IsRequired();
-
+            builder.Property(x => x.Calorias).IsRequired();
         }
     }
 }

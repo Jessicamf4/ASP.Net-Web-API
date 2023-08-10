@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using SistemaAlimentacao.Data;
+using SistemaAlimentacao.Repositorios;
 using SistemaAlimentacao.Repositorios.Interfaces;
 
 namespace SistemaAlimentacao
@@ -21,7 +22,8 @@ namespace SistemaAlimentacao
                 .AddDbContext<SistemaRefeicaoDBContext>(
                 options => options.UseSqlServer(builder.Configuration.GetConnectionString("DataBase"))
                 );
-            builder.Services.AddScoped<IUsuarioRepositorio, IUsuarioRepositorio>();
+
+            builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
 
             var app = builder.Build();
 

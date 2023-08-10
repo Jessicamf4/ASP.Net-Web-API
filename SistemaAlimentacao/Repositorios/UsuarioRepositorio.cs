@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using SistemaAlimentacao.Data;
 using SistemaAlimentacao.Models;
+using SistemaAlimentacao.Repositorios;
 using SistemaAlimentacao.Repositorios.Interfaces;
 
 namespace SistemaAlimentacao.Repositorios
@@ -8,10 +9,12 @@ namespace SistemaAlimentacao.Repositorios
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
         private readonly SistemaRefeicaoDBContext _dbContext;
+
         public UsuarioRepositorio(SistemaRefeicaoDBContext sistemaRefeicaoDBContext)
         {
             _dbContext = sistemaRefeicaoDBContext;
         }
+
         public async Task<UsuarioModel> BuscarPorId(int id)
         {
             return await _dbContext.Usuarios.FirstOrDefaultAsync(x => x.Id == id);
@@ -21,14 +24,12 @@ namespace SistemaAlimentacao.Repositorios
         {
             return await _dbContext.Usuarios.ToListAsync();
         }
-
         public async Task<UsuarioModel> Adicionar(UsuarioModel usuario)
         {
             await _dbContext.Usuarios.AddAsync(usuario);
             await _dbContext.SaveChangesAsync();
 
             return usuario;
-
         }
 
         public async Task<bool> Apagar(int id)
@@ -49,7 +50,7 @@ namespace SistemaAlimentacao.Repositorios
         {
             UsuarioModel usuarioPorId = await BuscarPorId(id);
 
-            if(usuarioPorId == null)
+            if (usuarioPorId == null)
             {
                 throw new Exception($"Usuário para o Id {id}: não encontrado");
             }
@@ -61,6 +62,6 @@ namespace SistemaAlimentacao.Repositorios
             return usuarioPorId;
         }
 
-       
+
     }
 }
