@@ -9,5 +9,8 @@ namespace SistemaAlimentacao.Models
 
         public String? Descricao { get; set; }
         public int Calorias { get; set; }
+
+        public int? UsuarioId { get; set; }
+        public virtual UsuarioModel? Usuario { get; set; }
     }
 }

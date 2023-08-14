@@ -24,6 +24,7 @@ namespace SistemaAlimentacao
                 );
 
             builder.Services.AddScoped<IUsuarioRepositorio, UsuarioRepositorio>();
+            builder.Services.AddScoped<IRefeicaoRepositorio, RefeicaoRepositorio>();
 
             var app = builder.Build();
 

@@ -12,6 +12,8 @@ namespace SistemaAlimentacao.Data.Map
             builder.Property(x => x.Descricao).IsRequired().HasMaxLength(150);
             builder.Property(x => x.TipoRefeicao).IsRequired();
             builder.Property(x => x.Calorias).IsRequired();
+            builder.Property(x => x.UsuarioId);
+            builder.HasOne(x => x.Usuario);
         }
     }
 }
