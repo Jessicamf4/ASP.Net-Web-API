@@ -44,5 +44,32 @@ namespace SistemaAlimentacao
 
             app.Run();
         }
+
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // ...
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("https://localhost:7273", "http://127.0.0.1:8080", "http://192.168.0.60:8080", "http://192.168.0.60:8080/page.html")
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod());
+            });
+
+            // ...
+        }
+
+        // No arquivo Startup.cs, no método Configure:
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        {
+            // ...
+            app.UseCors("AllowSpecificOrigin");
+
+            // ...
+        }
+
+
+
+
     }
 }

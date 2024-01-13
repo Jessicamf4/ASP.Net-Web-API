@@ -20,6 +20,7 @@ namespace SistemaAlimentacao.Repositorios
             return await _dbContext.Refeicao
                 .Include(x => x.Usuario)
                 .FirstOrDefaultAsync(x => x.Id == id);
+
         }
 
         public async Task<List<RefeicaoModel>> BuscarTodasRefeicoes()
@@ -27,6 +28,13 @@ namespace SistemaAlimentacao.Repositorios
             return await _dbContext.Refeicao
                 .Include(x => x.Usuario)
                 .ToListAsync();
+        }
+
+        public async Task<RefeicaoModel> BuscarPorDescricao(string descricao)
+        {
+            return await _dbContext.Refeicao
+               .Include(x => x.Usuario)
+               .FirstOrDefaultAsync(x => x.Descricao == descricao);
         }
         public async Task<RefeicaoModel> Adicionar(RefeicaoModel refeicao)
         {

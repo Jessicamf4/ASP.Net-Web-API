@@ -6,6 +6,7 @@ namespace SistemaAlimentacao.Repositorios.Interfaces
     {
         Task<List<RefeicaoModel>> BuscarTodasRefeicoes();
         Task<RefeicaoModel> BuscarPorId(int id);
+        Task<RefeicaoModel> BuscarPorDescricao(string descricao);
         Task<RefeicaoModel> Adicionar(RefeicaoModel refeicao);
         Task<RefeicaoModel> Atualizar(RefeicaoModel refeicao, int id);
         Task<bool> Apagar(int id);

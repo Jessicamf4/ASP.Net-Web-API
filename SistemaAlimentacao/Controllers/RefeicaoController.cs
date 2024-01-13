@@ -16,7 +16,7 @@ namespace SistemaAlimentacao.Controllers
             _refeicaoRepositorio = refeicaoRepositorio;
         }
 
-        [HttpGet]
+        [HttpGet("BuscarTodasRefeicoes")]
         public async Task<ActionResult<List<RefeicaoModel>>> ListarTodas()
         {
             List<RefeicaoModel> refeicao = await _refeicaoRepositorio.BuscarTodasRefeicoes();
@@ -24,21 +24,28 @@ namespace SistemaAlimentacao.Controllers
         }
 
 
-        [HttpGet("{id}")]
+        [HttpGet("BuscarRefeicoesPorID/{id}")]
         public async Task<ActionResult<List<RefeicaoModel>>> BuscarPorId(int id)
         {
             RefeicaoModel refeicao = await _refeicaoRepositorio.BuscarPorId(id);
             return Ok(refeicao);
         }
 
-        [HttpPost]
+        [HttpGet("BuscarPorDescricao/{descricao}")]
+        public async Task<ActionResult<List<RefeicaoModel>>> BuscaPorDescricao(string descricao)
+        {
+            RefeicaoModel refeicao = await _refeicaoRepositorio.BuscarPorDescricao(descricao);
+            return Ok(refeicao);
+        }
+
+        [HttpPost("CadastrarRefeicao")]
         public async Task<ActionResult<RefeicaoModel>> Cadastrar([FromBody] RefeicaoModel refeicaoModel)
         {
             RefeicaoModel refeicao = await _refeicaoRepositorio.Adicionar(refeicaoModel);
             return Ok(refeicao);
         }
 
-        [HttpPut("{id}")]
+        [HttpPut("AtualizarRefeicao/{id}")]
         public async Task<ActionResult<RefeicaoModel>> Atualizar([FromBody] RefeicaoModel refeicaoModel, int id)
         {
             refeicaoModel.Id = id;
@@ -46,7 +53,7 @@ namespace SistemaAlimentacao.Controllers
             return Ok(refeicao);
         }
 
-        [HttpDelete("{id}")]
+        [HttpDelete("ApagarRefeicao/{id}")]
         public async Task<ActionResult<RefeicaoModel>> Apagar(int id)
         {
             bool apagado = await _refeicaoRepositorio.Apagar(id);
